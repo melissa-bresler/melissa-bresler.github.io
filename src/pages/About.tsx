@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Container, Typography, Box } from "@mui/material";
+import { Container, Typography, Box, Button } from "@mui/material";
 import photo from "../assets/pages/about/about-me-photo.jpg";
 import machine from "../assets/pages/about/arcade-machine.png";
 import ghost from "../assets/pages/about/ghost.png";
@@ -8,9 +8,12 @@ import greenGhost from "../assets/pages/about/green-ghost.png";
 import styles from "../styles/About.module.css";
 import PacmanEasterEgg from "../components/PackMan";
 import clsx from "clsx";
+import VpnKeyIcon from "@mui/icons-material/VpnKey";
+import InputDialog from "../components/InputDialog";
 
 const About: React.FC = () => {
   const [darkMode, setDarkMode] = useState(false);
+  const [dialogOpen, setDialogOpen] = useState(false);
 
   // Check initial theme on mount
   useEffect(() => {
@@ -33,8 +36,18 @@ const About: React.FC = () => {
     setDarkMode(isDark);
   };
 
+  const secretText =
+    "One of the things I've always likes about games is the easter eggs hidden inside them, so I thought I'd add a few of my own into this website as well.";
+
   return (
     <div>
+      {/* TODO: Adjust positioning to be mobile/narrow screen friendly */}
+      <InputDialog
+        open={dialogOpen}
+        setOpen={setDialogOpen}
+        title="Can you guess the code?"
+        content={secretText}
+      />
       <img
         src={machine}
         alt="arcade machine"
@@ -60,7 +73,14 @@ const About: React.FC = () => {
         }}
       />
       <Container sx={{ marginTop: 4 }}>
-        <Box sx={{ maxWidth: "60%", margin: "0 auto", padding: 2 }}>
+        <Box
+          sx={{
+            maxWidth: "60%",
+            margin: "0 auto",
+            marginBottom: "-2rem",
+            padding: 2,
+          }}
+        >
           <img src={photo} alt="portrait" className={styles.image} />
           <Typography
             variant="body1"
@@ -76,7 +96,7 @@ const About: React.FC = () => {
             </p>
             <p>
               This site is where I share what I’ve worked on so far. It’s a mix
-              of finished games and work in progress, along with some notes on
+              of finished games and works in progress, along with some notes on
               how things are going. I enjoy experimenting with mechanics,
               exploring new tools, and figuring out how to make something that’s
               fun to play.
@@ -85,8 +105,27 @@ const About: React.FC = () => {
               It’s an ongoing process, but one I really enjoy and want to keep
               building on. Thanks for taking a look.
             </p>
+            <p>PS: There’s a hidden button on this page somewhere...</p>
+            {/* TODO: Make iconbutton component */}
           </Typography>
         </Box>
+        {darkMode && (
+          <Button
+            className="easter-egg-button"
+            style={{
+              color: "gold",
+              alignContent: "center",
+              margin: "auto",
+              display: "flex",
+              backgroundColor: "transparent",
+            }}
+            disableElevation
+            disableRipple
+            onClick={() => setDialogOpen(true)}
+          >
+            <VpnKeyIcon />
+          </Button>
+        )}
       </Container>
       {/* Used https://picsvg.com to get svg file from img */}
       {/* Used https://yqnn.github.io/svg-path-editor/ for the svg path edit */}
