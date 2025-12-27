@@ -6,6 +6,7 @@ import clsx from "clsx";
 import ImageSwiper from "./ImageSwiper";
 import { useDarkMode } from "../../../hooks/UseDarkMode";
 
+// TODO: After making db, can fetch all of the required data from there using game id
 const GameBreakdown: React.FC<{
   date: string | Date;
   description: string;

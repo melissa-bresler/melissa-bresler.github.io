@@ -15,35 +15,42 @@ export interface Game {
   image?: string;
   platforms: string[],
 }
+
 const Home: React.FC = () => {
   const games = [
 
+  const games: Game[] = [
     {
       title: "Adventure.exe",
       description:
         "Dive into 90s nostalgia with this 2D retro game. Type your way through a choose-your-own-adventure story on an old-school terminal. Make choices, collect items, and experience a classic adventure!",
       link: "/adventureExe",
+      logo: aeLogo,
+      platforms: ["Web Based Application"],
     },
     {
       title: "Memory Meltdown",
       description:
         "Co-developed by James Watson, Joao Tiago Da Silva Figueira, and myself, Memory Meltdown is a mobile game that tests your memorization skills through three fun mini-games.",
       link: "/memory-meltdown",
-      image: mmLogo,
+      logo: mmLogo,
+      platforms: ["Mobile Application - IOS"],
     },
     {
       title: "Kaax's Dawn",
       description:
         "Explore a vibrant 3D world in this adventure game prototype, blending light combat, exploration, and charm—fun for all ages and inspired by games like Stray and Breath of the Wild.",
       link: "/kaaxs-dawn",
-      image: kdLogo,
+      logo: kdLogo,
+      platforms: ["PC"],
     },
     {
       title: "Biosynth",
       description:
         "A 2.5D isometric game set in a futuristic, barter-based society where you play as a kitchen worker navigating daily tasks, open exploration, and a growing effort to save a threatened world.",
       link: "/biosynth",
-      image: bLogo,
+      logo: bLogo,
+      platforms: ["PC"],
     },
   ];
 

@@ -1,7 +1,6 @@
 import React from "react";
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
-import DialogTitle from "@mui/material/DialogTitle";
 import { Box, Button, DialogActions, Grid, Typography } from "@mui/material";
 import { Game } from "../../../pages/Home";
 import { Transition } from "../../InputDialog";
@@ -30,7 +29,6 @@ const GamePreviewDialog: React.FC<DialogProps> = ({
     >
       {game && (
         <>
-          {/* <DialogTitle>{game.title}</DialogTitle> */}
           <DialogContent dividers>
             <Grid xs={6} display={"flex"} height={"100%"}>
               <Grid item width={"50%"} display="flex" flexDirection="column">
@@ -62,10 +60,11 @@ const GamePreviewDialog: React.FC<DialogProps> = ({
                 display="flex"
                 flexDirection="column"
               >
-                {game.image && (
+                {/* TODO: Edit this to maybe be an ImageSwiper or something. A simple image might be too boring */}
+                {game.logo && (
                   <Box
                     component="img"
-                    src={game.image}
+                    src={game.logo}
                     alt={game.title}
                     sx={{ width: "100%", borderRadius: 1, mt: 2 }}
                   />
@@ -74,9 +73,7 @@ const GamePreviewDialog: React.FC<DialogProps> = ({
             </Grid>
           </DialogContent>
           <DialogActions>
-            {/* <div className={styles.button}> */}
             <CustomButton to={game.link}>View Game</CustomButton>
-            {/* </div> */}
             <Button onClick={handleClose}>Close</Button>
           </DialogActions>
         </>
