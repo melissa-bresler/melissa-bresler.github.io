@@ -9,6 +9,7 @@ declare const require: {
   };
 };
 
+// FIXME: Something here is breaking these 2 pages
 export const loadImagesFromFolder = (folderName: string): string[] => {
   const folderContexts: Record<string, ReturnType<typeof require.context>> = {
     mm: require.context(

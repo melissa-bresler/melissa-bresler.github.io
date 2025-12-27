@@ -1,30 +1,75 @@
-import React from "react";
-import styles from "../../../styles/GameCarousel.module.css";
-import GamePreviewCard from ".//GamePreviewCard";
+import React, { useState, useRef } from "react";
+import Marquee from "react-fast-marquee";
+import { Box } from "@mui/material";
+import GamePreviewCard from "./GamePreviewCard";
+import { Game } from "../../../pages/Home";
+import GamePreviewDialog from "./GamePreviewDialog";
 
-export interface Game {
-  title: string;
-  description: string;
-  link: string;
-  image?: string;
-}
-
-export interface CraneOverlayProps {
+interface Props {
   games: Game[];
 }
 
-// FIXME: After 2 loops there's a gap until the last card reaches halfway and then it loads the the next ones
-const GameCarousel: React.FC<CraneOverlayProps> = ({ games }) => {
-  const loopedGames = [...games, ...games];
+// TODO: Still needs crane functionality to be added  so that crrane can select a game
+const GameCarousel: React.FC<Props> = ({ games }) => {
+  // Card click tracking
+  const [manualSelectionIndex, setManualSelectionIndex] = useState<
+    number | null
+  >(null);
+
+  const [isHovering, setIsHovering] = useState<boolean>(false);
+
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  const selectedGameIndex = manualSelectionIndex; // TODO: Will also check crane index once that has been made functional
+  const selectedGame =
+    selectedGameIndex !== null ? games[selectedGameIndex] : null;
+
+  // Pause carousel when dialog is open or mouse is over a card
+  const isPaused = selectedGameIndex !== null || isHovering === true;
+
+  const carouselItems = games.map((game, index) => (
+    <Box
+      component="div"
+      ref={(el: HTMLDivElement | null) => {
+        cardRefs.current[index] = el;
+      }}
+      onClick={() => setManualSelectionIndex(index)}
+      onMouseEnter={() => setIsHovering(true)}
+      onMouseLeave={() => setIsHovering(false)}
+      sx={{
+        cursor: "pointer",
+        marginRight: 3,
+        minWidth: 280,
+        flexShrink: 0,
+        userSelect: "none",
+        transition: "transform 0.3s ease",
+        "&:hover": {
+          transform: "scale(1.05)",
+          zIndex: 1,
+        },
+      }}
+    >
+      <GamePreviewCard {...game} />
+    </Box>
+  ));
 
   return (
-    <div className={styles.carouselWrapper}>
-      <div className={styles.carousel}>
-        {loopedGames.map((game, index) => (
-          <GamePreviewCard key={index} {...game} />
-        ))}
-      </div>
-    </div>
+    <>
+      <Marquee
+        play={!isPaused}
+        gradient={false}
+        speed={30}
+        pauseOnHover={false} // This is too sensitive as it pauses when the mouse is anywhere near it
+      >
+        {carouselItems}
+      </Marquee>
+
+      <GamePreviewDialog
+        open={selectedGameIndex !== null}
+        handleClose={() => setManualSelectionIndex(null)}
+        game={selectedGame}
+      />
+    </>
   );
 };
 

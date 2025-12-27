@@ -7,14 +7,22 @@ import mmLogo from "../assets/pages/home/mm-logo.png";
 import kdLogo from "../assets/pages/home/kd-logo.png";
 import bLogo from "../assets/pages/home/b-logo.png";
 
+export interface Game {
+  title: string;
+  description: string;
+  link: string;
+  logo?: string;
+  image?: string;
+  platforms: string[],
+}
 const Home: React.FC = () => {
   const games = [
+
     {
       title: "Adventure.exe",
       description:
         "Dive into 90s nostalgia with this 2D retro game. Type your way through a choose-your-own-adventure story on an old-school terminal. Make choices, collect items, and experience a classic adventure!",
       link: "/adventureExe",
-      image: aeLogo,
     },
     {
       title: "Memory Meltdown",
