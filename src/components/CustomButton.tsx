@@ -1,4 +1,3 @@
-// src/components/CustomButton.tsx
 import React from "react";
 import { Button } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
