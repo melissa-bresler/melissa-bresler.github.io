@@ -13,12 +13,10 @@ export interface Game {
   link: string;
   logo?: string;
   image?: string;
-  platforms: string[],
+  platforms: string[];
 }
 
 const Home: React.FC = () => {
-  const games = [
-
   const games: Game[] = [
     {
       title: "Adventure.exe",

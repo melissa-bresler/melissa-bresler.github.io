@@ -9,7 +9,7 @@ interface Props {
   games: Game[];
 }
 
-// TODO: Still needs crane functionality to be added  so that crrane can select a game
+// TODO: Still needs crane functionality to be added  so that crane can select a game
 const GameCarousel: React.FC<Props> = ({ games }) => {
   // Card click tracking
   const [manualSelectionIndex, setManualSelectionIndex] = useState<
