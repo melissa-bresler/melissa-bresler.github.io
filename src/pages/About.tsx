@@ -37,7 +37,7 @@ const About: React.FC = () => {
   };
 
   const secretText =
-    "One of the things I've always likes about games is the easter eggs hidden inside them, so I thought I'd add a few of my own into this website as well.";
+    "One of the things I've always liked about games is the easter eggs hidden inside them, so I thought I'd add a few of my own into this website as well.";
 
   return (
     <div>

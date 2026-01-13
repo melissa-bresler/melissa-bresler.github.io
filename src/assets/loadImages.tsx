@@ -9,29 +9,26 @@ declare const require: {
   };
 };
 
-// FIXME: Something here is breaking these 2 pages
 export const loadImagesFromFolder = (folderName: string): string[] => {
-  const folderContexts: Record<string, ReturnType<typeof require.context>> = {
-    mm: require.context(
-      "./pages/games/MemoryMeltdown",
-      false,
-      /\.(png|jpe?g|svg)$/
-    ),
-    kd: require.context(
-      "./pages/games/KaaxsDawn/Slideshow",
-      false,
-      /\.(png|jpe?g|svg)$/
+  const folderGlobs: Record<string, Record<string, { default: string }>> = {
+    mm: import.meta.glob("./pages/games/MemoryMeltdown/*.{png,jpg,jpeg,svg}", {
+      eager: true,
+    }),
+    kd: import.meta.glob(
+      "./pages/games/KaaxsDawn/Slideshow/*.{png,jpg,jpeg,svg}",
+      {
+        eager: true,
+      }
     ),
   };
 
-  const context = folderContexts[folderName];
-  if (!context) {
+  const images = folderGlobs[folderName];
+  if (!images) {
     console.warn(`No context for folder: ${folderName}`);
     return [];
   }
 
-  return context
-    .keys()
-    .map(context)
+  return Object.values(images)
+    .map((mod) => mod.default)
     .sort((a, b) => a.localeCompare(b));
 };
