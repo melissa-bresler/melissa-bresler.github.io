@@ -30,7 +30,7 @@ const AdventureExe: React.FC = () => {
     ? blogPostsData.map((post) => ({
         date: post.date,
         blogText: post.blogText,
-        image: chapterStats, //TODO: Obviously will not have this hard coded later
+        image: post.image,
         imageAlt: post.imageAlt,
         keyChanges: post.keyChanges,
       }))

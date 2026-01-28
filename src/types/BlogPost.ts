@@ -4,6 +4,7 @@ export type BlogPostDTO = {
   blogText: string;
   imageAlt: string;
   keyChanges: string[];
+  image: string;
   gameId: string;
 };
 

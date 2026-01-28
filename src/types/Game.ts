@@ -8,6 +8,7 @@ export type GameDTO = {
   status: string;
   createdAt: Date;
   starred: boolean;
+  logo: string;
 };
 
 export interface Game {
@@ -15,7 +16,7 @@ export interface Game {
   title: string;
   description: string;
   slug: string;
-  logo?: string;
+  logo: string;
   platforms: string[];
   starred: boolean;
 }

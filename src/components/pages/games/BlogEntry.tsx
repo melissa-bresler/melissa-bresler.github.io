@@ -24,20 +24,16 @@ const BlogEntry: React.FC<{
 
   return (
     <>
-      <Grid
-        xs={6}
-        display={"flex"}
-        sx={{ paddingTop: !firstEntry ? "5%" : "0%" }}
-      >
+      <Grid display={"flex"} sx={{ paddingTop: !firstEntry ? "5%" : "0%" }}>
         {!switchSides && <GridImage image={image} imageAlt={imageAlt} />}
-        <Grid item width={"50%"}>
+        <Grid width={"50%"}>
           <Typography variant="h4" sx={{ textAlign: "center" }} gutterBottom>
             {displayDate}
           </Typography>
           <Card>
             <Typography
               variant="body1"
-              paragraph
+              component="p"
               sx={{ textAlign: "justify", width: "90%" }}
             >
               {blogText}
@@ -68,8 +64,8 @@ const GridImage: React.FC<{
   imageAlt: string;
 }> = ({ image, imageAlt }) => {
   return (
-    <Grid item width={"50%"}>
-      <img src={image} alt={imageAlt} className={styles.image} />
+    <Grid width={"50%"}>
+      <img src={`/${image}`} alt={imageAlt} className={styles.image} />
     </Grid>
   );
 };

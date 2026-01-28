@@ -7,9 +7,9 @@ import { BackToHomeButton } from "../../components/BackToHomeButton";
 import visualBoard from "../../assets/pages/games/Biosynth/milanote.png";
 
 const Biosynth: React.FC = () => {
-   const name = "biosynth";
+  const name = "biosynth";
   const [_, setGameId] = useState<string | undefined>();
-  
+
   return (
     <>
       <BackToHomeButton />

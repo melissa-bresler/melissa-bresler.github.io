@@ -6,7 +6,6 @@ import unitylogo from "../../assets/pages/games/unity-logo.png";
 import { BackToHomeButton } from "../../components/BackToHomeButton";
 import gameScreenshot from "../../assets/pages/games/KaaxsDawn/Slideshow/save-slots.png";
 import { loadImagesFromFolder } from "../../assets/loadImages";
-import classDiagram from "../../assets/pages/games/KaaxsDawn/class-diagram.jpg";
 import { useGetBlogPostsByGameIdQuery } from "../../api/gameQueries";
 import { BlogEntryData, BlogPostDTO } from "../../types/BlogPost";
 import Spinner from "../../components/Spinner";
@@ -31,7 +30,7 @@ const KaaxsDawn: React.FC = () => {
     ? blogPostsData.map((post) => ({
         date: post.date,
         blogText: post.blogText,
-        image: classDiagram, //TODO: Obviously will not have this hard coded later
+        image: post.image,
         imageAlt: post.imageAlt,
         keyChanges: post.keyChanges,
       }))

@@ -14,11 +14,11 @@ const GameBreakdown: React.FC<{
   logos: { name: string; alt: string; invert: boolean }[];
   GameComponent?: React.FC;
   gameArt: { src: string; alt: string };
-  images?: string[];
+  images: string[];
   name: string;
   setGameId: React.Dispatch<React.SetStateAction<string | undefined>>;
-}> = ({ logos, gameArt, GameComponent, name, setGameId }) => {
-  // const isDarkMode = useDarkMode();
+}> = ({ logos, gameArt, GameComponent, name, setGameId, images }) => {
+  const isDarkMode = useDarkMode();
 
   const getGameQuery = useGetGameBySlugQuery(name);
 
@@ -115,10 +115,9 @@ const GameBreakdown: React.FC<{
         >
           {GameComponent ? (
             <GameComponent />
+          ) : images && images.length > 0 ? (
+            <ImageSwiper images={images} isDarkMode={isDarkMode} />
           ) : (
-            // TODO: Uncomment later
-            // ) : images && images.length > 0 ? (
-            //   <ImageSwiper images={images} isDarkMode={isDarkMode} />
             <img
               src={gameArt.src}
               alt={gameArt.alt}

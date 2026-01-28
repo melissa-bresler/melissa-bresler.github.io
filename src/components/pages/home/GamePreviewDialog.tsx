@@ -65,7 +65,7 @@ const GamePreviewDialog: React.FC<DialogProps> = ({
                 {game.logo && (
                   <Box
                     component="img"
-                    src={game.logo}
+                    src={`/${game.logo}`}
                     alt={game.title}
                     sx={{ width: "100%", borderRadius: 1, mt: 2 }}
                   />

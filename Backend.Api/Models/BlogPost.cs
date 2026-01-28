@@ -8,4 +8,5 @@ public class BlogPost
     public string ImageAlt { get; set; } = string.Empty;
     public string[] KeyChanges { get; set; } = Array.Empty<string>();
     public Guid GameId { get; set; }
+    public string Image { get; set; } = string.Empty;
 }

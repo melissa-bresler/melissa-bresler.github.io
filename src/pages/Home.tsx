@@ -27,6 +27,7 @@ const Home: React.FC = () => {
     slug: game.slug,
     platforms: game.platforms,
     starred: game.starred,
+    logo: game.logo,
   }));
 
   return (

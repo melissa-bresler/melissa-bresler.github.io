@@ -11,4 +11,5 @@ public class Game
     public string Status { get; set; } = "In Development";
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
     public bool Starred { get; set; } = false;
+    public string Logo { get; set; } = string.Empty;
 }

@@ -14,7 +14,7 @@ const GamePreviewCard: React.FC<Game> = ({
       {logo && (
         <div className={styles.imageWrapper}>
           <img
-            src={logo}
+            src={`/${logo}`}
             alt={title}
             className={`${styles.image} invert-on-dark`}
           />
