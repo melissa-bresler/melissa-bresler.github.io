@@ -2,9 +2,9 @@ import React from "react";
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
 import { Box, Button, DialogActions, Grid, Typography } from "@mui/material";
-import { Game } from "../../../pages/Home";
 import { Transition } from "../../InputDialog";
 import CustomButton from "../../CustomButton";
+import { Game } from "../../../types/Game";
 
 interface DialogProps {
   open: boolean;
@@ -12,26 +12,28 @@ interface DialogProps {
   game: Game | null;
 }
 
-// TODO: This could be made easier by giving each card an id and storing the data for it in a db.
-// That way the data doesn't have to be passed all at once, only the id
 const GamePreviewDialog: React.FC<DialogProps> = ({
   open,
   handleClose,
   game,
 }) => {
+  const toLink = "/" + game?.slug;
+
+  //TODO: Do an api call here to get further game data.
+
   return (
     <Dialog
       open={open}
       onClose={handleClose}
       maxWidth="sm"
       fullWidth
-      TransitionComponent={Transition}
+      slots={{ transition: Transition }}
     >
       {game && (
         <>
           <DialogContent dividers>
-            <Grid xs={6} display={"flex"} height={"100%"}>
-              <Grid item width={"50%"} display="flex" flexDirection="column">
+            <Grid display={"flex"} height={"100%"}>
+              <Grid width={"50%"} display="flex" flexDirection="column">
                 <Typography variant="h4" sx={{ textAlign: "center" }}>
                   {game.title}
                 </Typography>
@@ -49,12 +51,11 @@ const GamePreviewDialog: React.FC<DialogProps> = ({
                 >
                   {game.platforms.join(" | ")}
                 </Typography>
-                <Typography variant="body1" paragraph>
+                <Typography variant="body1" component="p">
                   {game.description}
                 </Typography>
               </Grid>
               <Grid
-                item
                 width={"50%"}
                 marginLeft={"5px"}
                 display="flex"
@@ -73,7 +74,7 @@ const GamePreviewDialog: React.FC<DialogProps> = ({
             </Grid>
           </DialogContent>
           <DialogActions>
-            <CustomButton to={game.link}>View Game</CustomButton>
+            <CustomButton to={toLink}>View Game</CustomButton>
             <Button onClick={handleClose}>Close</Button>
           </DialogActions>
         </>

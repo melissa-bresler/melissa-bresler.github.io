@@ -1,13 +1,6 @@
 import { Divider, Typography } from "@mui/material";
 import BlogEntry from "./BlogEntry";
-
-export interface BlogEntryData {
-  date: string;
-  blogText: string;
-  image: string;
-  imageAlt: string;
-  keyChanges: string[];
-}
+import { BlogEntryData } from "../../../types/BlogPost";
 
 const BlogSection: React.FC<{
   entries: BlogEntryData[];

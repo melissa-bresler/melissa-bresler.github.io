@@ -1,25 +1,42 @@
 import React from "react";
 import styles from "../../../styles/GamePreviewCard.module.css";
-import { Game } from "../../../pages/Home";
+import { Game } from "../../../types/Game";
+import StarIcon from "@mui/icons-material/Star";
 
 const GamePreviewCard: React.FC<Game> = ({
   title,
   description,
-  logo: image,
+  logo,
+  starred,
 }) => {
   return (
     <div className={styles.card}>
-      {image && (
+      {logo && (
         <div className={styles.imageWrapper}>
           <img
-            src={image}
+            src={logo}
             alt={title}
             className={`${styles.image} invert-on-dark`}
           />
         </div>
       )}
       <div className={styles.content}>
-        <h3 className={styles.title}>{title}</h3>
+        <div style={{ display: "flex", margin: "auto" }}>
+          {starred && (
+            <div
+              style={{
+                color: "gold",
+                alignContent: "center",
+                margin: "auto",
+                display: "flex",
+                backgroundColor: "transparent",
+              }}
+            >
+              <StarIcon />
+            </div>
+          )}
+          <h3 className={styles.title}>{title}</h3>
+        </div>
         <p className={styles.description}>{description}</p>
       </div>
     </div>

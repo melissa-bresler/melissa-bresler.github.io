@@ -2,8 +2,8 @@ import React, { useState, useRef } from "react";
 import Marquee from "react-fast-marquee";
 import { Box } from "@mui/material";
 import GamePreviewCard from "./GamePreviewCard";
-import { Game } from "../../../pages/Home";
 import GamePreviewDialog from "./GamePreviewDialog";
+import { Game } from "../../../types/Game";
 
 interface Props {
   games: Game[];

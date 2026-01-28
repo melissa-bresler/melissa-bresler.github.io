@@ -11,5 +11,6 @@ namespace Backend.Api.Data
         }
 
         public DbSet<Game> Games => Set<Game>();
+        public DbSet<BlogPost> BlogPosts => Set<BlogPost>();
     }
 }

@@ -5,38 +5,44 @@ import styles from "../../../styles/GameBreakdown.module.css";
 import clsx from "clsx";
 import ImageSwiper from "./ImageSwiper";
 import { useDarkMode } from "../../../hooks/UseDarkMode";
+import { useGetGameBySlugQuery } from "../../../api/gameQueries";
+import { useState, useEffect } from "react";
+import { GameDTO } from "../../../types/Game";
+import Spinner from "../../Spinner";
 
-// TODO: After making db, can fetch all of the required data from there using game id
 const GameBreakdown: React.FC<{
-  date: string | Date;
-  description: string;
-  title: string;
-  platforms: string[];
-  status: string;
   logos: { name: string; alt: string; invert: boolean }[];
   GameComponent?: React.FC;
   gameArt: { src: string; alt: string };
   images?: string[];
-}> = ({
-  date,
-  description,
-  title,
-  platforms,
-  status,
-  logos,
-  gameArt,
-  GameComponent,
-  images,
-}) => {
-  const displayDate = moment(date).format("DD-MM-YYYY");
-  const isDarkMode = useDarkMode();
+  name: string;
+  setGameId: React.Dispatch<React.SetStateAction<string | undefined>>;
+}> = ({ logos, gameArt, GameComponent, name, setGameId }) => {
+  // const isDarkMode = useDarkMode();
+
+  const getGameQuery = useGetGameBySlugQuery(name);
+
+  const [gameData, setGameData] = useState<GameDTO | undefined>();
+
+  useEffect(() => {
+    if (getGameQuery.data) {
+      setGameData(getGameQuery.data);
+      setGameId(getGameQuery.data.id);
+    }
+  }, [getGameQuery.data]);
+
+  if (gameData == undefined) {
+    return <Spinner />;
+  }
+
+  const displayDate = moment(gameData.createdAt).format("DD-MM-YYYY");
 
   return (
     <>
-      <Grid xs={6} display={"flex"} height={"100%"}>
-        <Grid item width={"50%"} display="flex" flexDirection="column">
+      <Grid display={"flex"} height={"100%"}>
+        <Grid width={"50%"} display="flex" flexDirection="column">
           <Typography variant="h4" sx={{ textAlign: "center" }}>
-            {title}
+            {gameData.title}
           </Typography>
           <Typography
             variant="overline"
@@ -50,29 +56,32 @@ const GameBreakdown: React.FC<{
             }}
             gutterBottom
           >
-            {platforms.join(" | ")}
+            {gameData?.platforms.join(" | ")}
           </Typography>
           <Card>
-            <Typography variant="body1" paragraph sx={{ textAlign: "justify" }}>
-              {description}
+            <Typography
+              variant="body1"
+              component="p"
+              sx={{ textAlign: "justify" }}
+            >
+              {gameData.longDescription}
             </Typography>
           </Card>
           <Grid
-            xs={6}
             display={"flex"}
             alignItems={"center"}
             justifyContent={"center"}
           >
-            <Grid item width={"50%"}>
+            <Grid width={"50%"}>
               <Card>
                 <div className={styles.card}>
                   <Typography variant="overline" fontSize={16}>
-                    {status}
+                    {gameData.status}
                   </Typography>
                 </div>
               </Card>
             </Grid>
-            <Grid item width={"50%"}>
+            <Grid width={"50%"}>
               <Card>
                 <div style={{ display: "flex" }}>
                   {logos.map((logo, index) => (
@@ -82,7 +91,7 @@ const GameBreakdown: React.FC<{
                         alt={logo.alt}
                         className={clsx(
                           styles.image,
-                          logo.invert && "invert-on-dark"
+                          logo.invert && "invert-on-dark",
                         )}
                         style={{ margin: 5 }}
                       />
@@ -99,7 +108,6 @@ const GameBreakdown: React.FC<{
           </Card>
         </Grid>
         <Grid
-          item
           width={"50%"}
           marginLeft={"5px"}
           display="flex"
@@ -107,9 +115,10 @@ const GameBreakdown: React.FC<{
         >
           {GameComponent ? (
             <GameComponent />
-          ) : images && images.length > 0 ? (
-            <ImageSwiper images={images} isDarkMode={isDarkMode} />
           ) : (
+            // TODO: Uncomment later
+            // ) : images && images.length > 0 ? (
+            //   <ImageSwiper images={images} isDarkMode={isDarkMode} />
             <img
               src={gameArt.src}
               alt={gameArt.alt}

@@ -10,9 +10,10 @@ describe("TESTS", () => {
         title={"Test Game"}
         description={"foo bar"}
         logo=""
-        link={""}
+        slug={""}
         platforms={[]}
-      />
+        id={""}
+      />,
     );
 
     expect(screen.getByText("Test Game")).toBeInTheDocument();

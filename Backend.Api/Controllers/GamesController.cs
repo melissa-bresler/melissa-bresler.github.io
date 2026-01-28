@@ -21,4 +21,15 @@ public class GamesController : ControllerBase
     {
         return await _db.Games.ToListAsync();
     }
+
+    [HttpGet("{slug}")]
+    public async Task<ActionResult<Game>> GetBySlug(string slug)
+    {
+        var game = await _db.Games.FirstOrDefaultAsync(x => x.Slug == slug);
+
+        if (game == null)
+            return NotFound();
+
+        return game;
+    }
 }

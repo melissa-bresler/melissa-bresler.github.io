@@ -19,7 +19,7 @@ export const Transition = React.forwardRef(function Transition(
   props: TransitionProps & {
     children: React.ReactElement<any, any>;
   },
-  ref: React.Ref<unknown>
+  ref: React.Ref<unknown>,
 ) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
@@ -33,7 +33,7 @@ const InputDialog: React.FC<DialogProps> = ({
   return (
     <Dialog
       open={open}
-      TransitionComponent={Transition}
+      slots={{ transition: Transition }}
       keepMounted
       onClose={() => setOpen(false)}
       fullWidth
