@@ -1,8 +1,8 @@
 export type GameDTO = {
   id: string;
-  slug: string;
   title: string;
   description: string;
+  slug: string;
   longDescription: string;
   platforms: string[];
   status: string;

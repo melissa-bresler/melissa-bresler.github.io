@@ -14,7 +14,7 @@ const GameBreakdown: React.FC<{
   logos: { name: string; alt: string; invert: boolean }[];
   GameComponent?: React.FC;
   gameArt: { src: string; alt: string };
-  images: string[];
+  images?: string[];
   name: string;
   setGameId: React.Dispatch<React.SetStateAction<string | undefined>>;
 }> = ({ logos, gameArt, GameComponent, name, setGameId, images }) => {
