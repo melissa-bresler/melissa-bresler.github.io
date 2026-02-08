@@ -75,7 +75,14 @@ const GamePreviewDialog: React.FC<DialogProps> = ({
           </DialogContent>
           <DialogActions>
             <CustomButton to={toLink}>View Game</CustomButton>
-            <Button onClick={handleClose}>Close</Button>
+            <Button
+              onClick={handleClose}
+              sx={{
+                color: "var(--pink)",
+              }}
+            >
+              Close
+            </Button>
           </DialogActions>
         </>
       )}
