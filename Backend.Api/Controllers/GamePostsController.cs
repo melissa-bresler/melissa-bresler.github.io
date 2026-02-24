@@ -19,6 +19,9 @@ public class BlogPostsController : ControllerBase
     [HttpGet("{id}")]
     public async Task<IEnumerable<BlogPost>> GetAllByGameId(Guid id)
     {
-        return await _db.BlogPosts.Where(x => x.GameId == id).ToListAsync();
+        return await _db.BlogPosts
+        .Where(x => x.GameId == id)
+        .OrderByDescending(x => x.Date)
+        .ToListAsync();
     }
 }

@@ -5,6 +5,7 @@ import styles from "../styles/Home.module.css";
 import { useGetGamesQuery } from "../api/gameQueries";
 import { Game, GameDTO } from "../types/Game";
 import Spinner from "../components/Spinner";
+import ErrorPage from "../components/ErrorPage";
 
 const Home: React.FC = () => {
   const getGamesQuery = useGetGamesQuery();
@@ -16,8 +17,12 @@ const Home: React.FC = () => {
     }
   }, [getGamesQuery.data]);
 
-  if (data == undefined) {
+  if (getGamesQuery.isLoading) {
     return <Spinner />;
+  }
+
+  if (getGamesQuery.isError || data == undefined) {
+    return <ErrorPage error={getGamesQuery.error} />;
   }
 
   const games: Game[] = data.map((game) => ({

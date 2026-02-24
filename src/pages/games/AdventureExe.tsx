@@ -5,11 +5,12 @@ import csharplogo from "../../assets/pages/games/c-sharp-logo.png";
 import unitylogo from "../../assets/pages/games/unity-logo.png";
 import chapterStats from "../../assets/pages/games/AdventureExe/chapter-stats-introduced.png";
 import { BackToHomeButton } from "../../components/BackToHomeButton";
-import AdventureExeGame from "../../components/pages/games/AdventureExeGame";
+// import AdventureExeGame from "../../components/pages/games/AdventureExeGame"; //This is currently a test file and not the actual game
 import BlogSection from "../../components/pages/games/BlogSection";
 import { useGetBlogPostsByGameIdQuery } from "../../api/gameQueries";
 import Spinner from "../../components/Spinner";
 import { BlogEntryData, BlogPostDTO } from "../../types/BlogPost";
+import ConstructionWarning from "../../components/ConstructionWarning";
 
 const AdventureExe: React.FC = () => {
   const name = "adventureExe";
@@ -49,7 +50,8 @@ const AdventureExe: React.FC = () => {
             src: chapterStats, //TODO: Change this later
             alt: name,
           }}
-          GameComponent={AdventureExeGame}
+          // GameComponent={AdventureExeGame} //TODO: Uncomment after importing actual game
+          GameComponent={ConstructionWarning}
           setGameId={setGameId}
           name={name}
         />

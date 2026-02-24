@@ -9,6 +9,7 @@ import { useGetGameBySlugQuery } from "../../../api/gameQueries";
 import { useState, useEffect } from "react";
 import { GameDTO } from "../../../types/Game";
 import Spinner from "../../Spinner";
+import ErrorPage from "../../ErrorPage";
 
 const GameBreakdown: React.FC<{
   logos: { name: string; alt: string; invert: boolean }[];
@@ -31,8 +32,12 @@ const GameBreakdown: React.FC<{
     }
   }, [getGameQuery.data]);
 
-  if (gameData == undefined) {
+  if (getGameQuery.isLoading) {
     return <Spinner />;
+  }
+
+  if (getGameQuery.isError || gameData == undefined) {
+    return <ErrorPage error={getGameQuery.error} />;
   }
 
   const displayDate = moment(gameData.createdAt).format("DD-MM-YYYY");
