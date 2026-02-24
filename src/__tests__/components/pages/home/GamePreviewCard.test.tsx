@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import GamePreviewCard from "../../../../components/pages/home/GamePreviewCard";
 
-describe("TESTS", () => {
+describe("game preview card component", () => {
   test("renders component", () => {
     render(
       // TODO: some of these values shouldn't be required for this component but currently are due to being part of the Game object.
@@ -13,6 +13,7 @@ describe("TESTS", () => {
         slug={""}
         platforms={[]}
         id={""}
+        starred={false}
       />,
     );
 

@@ -20,13 +20,8 @@ const BlogSection: React.FC<{
       <div style={{ margin: 50 }} />
       {entries.map((entry, i) => (
         <BlogEntry
-          key={i}
-          date={entry.date}
-          blogText={entry.blogText}
-          image={entry.image}
-          imageAlt={entry.imageAlt}
+          data={entry}
           switchSides={i % 2 !== 0}
-          keyChanges={entry.keyChanges}
           firstEntry={i === 0}
         />
       ))}

@@ -2,30 +2,21 @@ import { Grid, Typography } from "@mui/material";
 import moment from "moment";
 import { Card } from "../../Card";
 import styles from "../../../styles/BlogEntry.module.css";
+import { BlogEntryData } from "../../../types/BlogPost";
 
 const BlogEntry: React.FC<{
-  date: string | Date;
-  blogText: string;
-  image: string;
-  imageAlt: string;
+  data: BlogEntryData;
   switchSides: boolean;
-  keyChanges: string[];
   firstEntry: boolean;
-}> = ({
-  date,
-  blogText,
-  image,
-  imageAlt,
-  switchSides,
-  keyChanges,
-  firstEntry,
-}) => {
-  const displayDate = moment(date).format("DD-MM-YYYY");
+}> = ({ data, switchSides, firstEntry }) => {
+  const displayDate = moment(data.date).format("DD-MM-YYYY");
 
   return (
     <>
       <Grid display={"flex"} sx={{ paddingTop: !firstEntry ? "5%" : "0%" }}>
-        {!switchSides && <GridImage image={image} imageAlt={imageAlt} />}
+        {!switchSides && (
+          <GridImage image={data.image} imageAlt={data.imageAlt} />
+        )}
         <Grid width={"50%"}>
           <Typography variant="h4" sx={{ textAlign: "center" }} gutterBottom>
             {displayDate}
@@ -36,13 +27,13 @@ const BlogEntry: React.FC<{
               component="p"
               sx={{ textAlign: "justify", width: "90%" }}
             >
-              {blogText}
+              {data.blogText}
             </Typography>
           </Card>
           <Card>
             <div className={styles.card}>
               <ul className={styles.list}>
-                {keyChanges.map((change, index) => (
+                {data.keyChanges.map((change, index) => (
                   <div key={index}>
                     <li>{change}</li>
                   </div>
@@ -51,7 +42,9 @@ const BlogEntry: React.FC<{
             </div>
           </Card>
         </Grid>
-        {switchSides && <GridImage image={image} imageAlt={imageAlt} />}
+        {switchSides && (
+          <GridImage image={data.image} imageAlt={data.imageAlt} />
+        )}
       </Grid>
     </>
   );
