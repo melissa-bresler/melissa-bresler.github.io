@@ -8,6 +8,7 @@ namespace Backend.Api.Controllers;
 public class HealthController : ControllerBase
 {
     [HttpGet]
+    [HttpHead]
     public IActionResult Health()
     {
         return Ok(new { status = "ok" });
