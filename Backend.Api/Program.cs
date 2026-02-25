@@ -26,6 +26,16 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
+AppDomain.CurrentDomain.UnhandledException += (s, e) =>
+{
+    Console.WriteLine($"Unhandled exception: {e.ExceptionObject}");
+};
+TaskScheduler.UnobservedTaskException += (s, e) =>
+{
+    Console.WriteLine($"Unobserved task exception: {e.Exception}");
+    e.SetObserved();
+};
+
 // Middleware
 app.UseSwagger();
 app.UseSwaggerUI();
@@ -38,4 +48,5 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+Console.WriteLine("Starting app...");
 app.Run();
