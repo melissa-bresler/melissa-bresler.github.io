@@ -7,99 +7,188 @@ import {
   Box,
   Menu,
   MenuItem,
+  Container,
+  IconButton,
 } from "@mui/material";
 import { Link } from "react-router-dom";
 import styles from "../styles/Navbar.module.css";
 import controller from "../assets/navbar-controller.png";
 import { useDarkMode } from "../hooks/UseDarkMode";
+import { MenuItemType, ResponsiveMenuItem } from "./ResponsiveMenuItem";
+import MenuIcon from "@mui/icons-material/Menu";
+
+const menuItems: MenuItemType[] = [
+  {
+    label: "Home",
+    path: "/",
+  },
+  {
+    label: "Games",
+    subMenu: [
+      { label: "Adventure.exe", path: "/adventureExe" },
+      { label: "Memory Meltdown", path: "/memory-meltdown" },
+      { label: "Kaax's Dawn", path: "/kaaxs-dawn" },
+      { label: "Biosynth", path: "/biosynth" },
+    ],
+  },
+  {
+    label: "About",
+    path: "/about",
+  },
+];
 
 const Navbar: React.FC = () => {
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-  const open = Boolean(anchorEl);
+  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
+    null,
+  );
 
-  const handleClose = () => {
-    closeTimeout = setTimeout(() => {
-      setAnchorEl(null);
-    }, 75);
+  const [gamesAnchorEl, setGamesAnchorEl] = React.useState<null | HTMLElement>(
+    null,
+  );
+
+  const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorElNav(event.currentTarget);
+  };
+
+  const handleCloseNavMenu = () => {
+    setAnchorElNav(null);
+  };
+
+  const handleOpenGamesMenu = (event: React.MouseEvent<HTMLElement>) => {
+    setGamesAnchorEl(event.currentTarget);
+  };
+
+  const handleCloseGamesMenu = () => {
+    setGamesAnchorEl(null);
   };
 
   const isDarkMode = useDarkMode();
   const textColour = isDarkMode ? "var(--black)" : "var(--white)";
 
-  let closeTimeout: ReturnType<typeof setTimeout>;
-
   return (
-    <AppBar position="static">
-      <Toolbar
-        sx={{ background: isDarkMode ? "var(--white)" : "var(--black)" }}
-      >
-        <Box sx={{ display: "flex", flexGrow: 1, alignItems: "center" }}>
+    <AppBar
+      position="static"
+      sx={{ backgroundColor: isDarkMode ? "var(--white)" : "var(--black)" }}
+    >
+      <Container maxWidth="xl">
+        <Toolbar disableGutters>
+          {/* Desktop view */}
+          <Box sx={{ display: "flex", flexGrow: 1, alignItems: "center" }}>
+            <Typography
+              variant="h6"
+              noWrap
+              component="a"
+              sx={{
+                mr: 2,
+                display: { xs: "none", md: "flex" },
+                fontFamily: "monospace",
+                fontWeight: 700,
+                letterSpacing: ".3rem",
+                color: textColour,
+                textDecoration: "none",
+              }}
+            >
+              MELISSA BRESLER
+            </Typography>
+            <img src={controller} alt="Logo" className={styles.imageDesktop} />
+          </Box>
+          <Box sx={{ display: { xs: "none", md: "flex" }, gap: 2 }}>
+            {menuItems.map((item) =>
+              !item.subMenu ? (
+                <Button
+                  key={item.label}
+                  component={Link}
+                  to={item.path ?? ""}
+                  sx={{ color: textColour }}
+                >
+                  {item.label}
+                </Button>
+              ) : (
+                <React.Fragment key={item.label}>
+                  <Button
+                    sx={{ color: textColour }}
+                    onClick={handleOpenGamesMenu}
+                  >
+                    {item.label}
+                  </Button>
+
+                  <Menu
+                    anchorEl={gamesAnchorEl}
+                    open={Boolean(gamesAnchorEl)}
+                    onClose={handleCloseGamesMenu}
+                  >
+                    {item.subMenu.map((subItem) => (
+                      <MenuItem
+                        key={subItem.label}
+                        component={Link}
+                        to={subItem.path}
+                        onClick={handleCloseGamesMenu}
+                      >
+                        {subItem.label}
+                      </MenuItem>
+                    ))}
+                  </Menu>
+                </React.Fragment>
+              ),
+            )}
+          </Box>
+
+          {/* Mobile view */}
+          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+            <IconButton
+              size="large"
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
+              onClick={handleOpenNavMenu}
+              color={isDarkMode ? "default" : "inherit"}
+            >
+              <MenuIcon />
+            </IconButton>
+            <Menu
+              id="menu-appbar"
+              anchorEl={anchorElNav}
+              anchorOrigin={{
+                vertical: "bottom",
+                horizontal: "left",
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "left",
+              }}
+              open={Boolean(anchorElNav)}
+              onClose={handleCloseNavMenu}
+              sx={{ display: { xs: "block", md: "none" } }}
+            >
+              {menuItems.map((item) => (
+                <ResponsiveMenuItem
+                  key={item.label}
+                  item={item}
+                  handleClose={handleCloseNavMenu}
+                />
+              ))}
+            </Menu>
+          </Box>
           <Typography
-            variant="h6"
-            sx={{ marginRight: "10px", color: textColour }}
+            variant="h5"
+            noWrap
+            component="a"
+            sx={{
+              mr: 2,
+              display: { xs: "flex", md: "none" },
+              flexGrow: 1,
+              fontFamily: "monospace",
+              fontWeight: 700,
+              letterSpacing: ".3rem",
+              color: textColour,
+              textDecoration: "none",
+            }}
           >
             MELISSA BRESLER
           </Typography>
-          <img src={controller} alt="Pellet" className={styles.image} />
-        </Box>
-        <Box sx={{ display: "flex", gap: 2 }}>
-          <Button sx={{ color: textColour }} component={Link} to="/">
-            Home
-          </Button>
-          <div
-            onMouseEnter={(e) => setAnchorEl(e.currentTarget)}
-            onMouseLeave={handleClose}
-          >
-            <Button
-              sx={{ color: textColour }}
-              aria-controls={open ? "basic-menu" : undefined}
-              aria-haspopup="true"
-              aria-expanded={open ? "true" : undefined}
-            >
-              Games
-            </Button>
-            <Menu
-              id="basic-menu"
-              anchorEl={anchorEl}
-              open={open}
-              onClose={handleClose}
-              autoFocus={false}
-              disableAutoFocusItem={true}
-              MenuListProps={{
-                onMouseEnter: () => clearTimeout(closeTimeout),
-                onMouseLeave: handleClose,
-              }}
-            >
-              <MenuItem
-                component={Link}
-                to="/adventureExe"
-                onClick={handleClose}
-              >
-                Adventure.exe
-              </MenuItem>
-              <MenuItem
-                component={Link}
-                to="/memory-meltdown"
-                onClick={handleClose}
-              >
-                Memory Meltdown
-              </MenuItem>
-              <MenuItem component={Link} to="/kaaxs-dawn" onClick={handleClose}>
-                Kaax's Dawn
-              </MenuItem>
-              <MenuItem component={Link} to="/biosynth" onClick={handleClose}>
-                Biosynth
-              </MenuItem>
-            </Menu>
-          </div>
-          <Button sx={{ color: textColour }} component={Link} to="/about">
-            About
-          </Button>
-          {/* <Button color="inherit" component={Link} to="/contact">
-            Contact
-          </Button> */}
-        </Box>
-      </Toolbar>
+          <img src={controller} alt="Logo" className={styles.imageMobile} />
+        </Toolbar>
+      </Container>
     </AppBar>
   );
 };

@@ -1,4 +1,19 @@
-.image {
-  height: 5%;
-  width: 5%;
+.imageMobile {
+  max-width: 4rem;
+  display: flex;
+}
+
+.imageDesktop {
+  display: none;
+}
+
+@media (min-width: 900px) {
+  .imageMobile {
+    display: none;
+  }
+
+  .imageDesktop {
+    max-width: 4rem;
+    display: flex;
+  }
 }
