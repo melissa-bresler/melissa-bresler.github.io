@@ -8,10 +8,12 @@ import greenGhost from "../assets/pages/about/green-ghost.png";
 import styles from "../styles/About.module.css";
 import PacmanEasterEgg from "../components/PackMan";
 import clsx from "clsx";
-import VpnKeyIcon from "@mui/icons-material/VpnKey";
+// import VpnKeyIcon from "@mui/icons-material/VpnKey";
 import InputDialog from "../components/InputDialog";
+import { useIsMobile } from "../hooks/UseIsMobile";
 
 const About: React.FC = () => {
+  const isMobile = useIsMobile();
   const [darkMode, setDarkMode] = useState(false);
   const [dialogOpen, setDialogOpen] = useState(false);
 
@@ -48,34 +50,37 @@ const About: React.FC = () => {
         title="Can you guess the code?"
         content={secretText}
       />
-      <img
-        src={machine}
-        alt="arcade machine"
-        className={`${styles.static} invert-on-dark`}
-      />
-      <img
-        src={darkMode ? redGhost : ghost}
-        alt="red ghost"
-        className={clsx(styles.ghost, !darkMode && styles.flipped)}
-        style={{
-          top: "70vh",
-          left: "40vw",
-        }}
-      />
-
-      <img
-        src={darkMode ? greenGhost : ghost}
-        alt="green ghost"
-        className={styles.ghost}
-        style={{
-          top: "15vh",
-          left: "85vw",
-        }}
-      />
-      <Container sx={{ marginTop: 4 }}>
+      {!isMobile && (
+        <>
+          <img
+            src={machine}
+            alt="arcade machine"
+            className={`${styles.static} invert-on-dark`}
+          />
+          <img
+            src={darkMode ? redGhost : ghost}
+            alt="red ghost"
+            className={clsx(styles.ghost, !darkMode && styles.flipped)}
+            style={{
+              top: "70vh",
+              left: "40vw",
+            }}
+          />
+          <img
+            src={darkMode ? greenGhost : ghost}
+            alt="green ghost"
+            className={styles.ghost}
+            style={{
+              top: "15vh",
+              left: "85vw",
+            }}
+          />
+        </>
+      )}
+      <Container sx={{ marginTop: !isMobile ? 4 : 2 }}>
         <Box
           sx={{
-            maxWidth: "60%",
+            maxWidth: !isMobile ? "60%" : "100%",
             margin: "0 auto",
             marginBottom: "-2rem",
             padding: 2,
@@ -109,7 +114,8 @@ const About: React.FC = () => {
             {/* TODO: Make iconbutton component */}
           </Typography>
         </Box>
-        {darkMode && (
+        {/* TODO: Re-enable once dialog has been completed */}
+        {/* {darkMode && (
           <Button
             className="easter-egg-button"
             style={{
@@ -125,7 +131,7 @@ const About: React.FC = () => {
           >
             <VpnKeyIcon />
           </Button>
-        )}
+        )} */}
       </Container>
       {/* Used https://picsvg.com to get svg file from img */}
       {/* Used https://yqnn.github.io/svg-path-editor/ for the svg path edit */}
