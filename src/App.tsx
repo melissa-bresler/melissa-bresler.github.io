@@ -20,22 +20,16 @@ const App: React.FC = () => {
 
   return (
     <Router>
-      <Box
-        sx={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}
-      >
-        <Navbar />
-        <Box sx={{ flex: 1, overflow: "auto", display: "flex" }}>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            {/* <Route path="/contact" element={<Contact />} /> */}
-            <Route path="/adventureExe" element={<AdventureExe />} />{" "}
-            <Route path="/memory-meltdown" element={<MemoryMeltdown />} />{" "}
-            <Route path="/kaaxs-dawn" element={<KaaxsDawn />} />{" "}
-            <Route path="/biosynth" element={<Biosynth />} />{" "}
-          </Routes>
-        </Box>
-      </Box>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        {/* <Route path="/contact" element={<Contact />} /> */}
+        <Route path="/adventureExe" element={<AdventureExe />} />{" "}
+        <Route path="/memory-meltdown" element={<MemoryMeltdown />} />{" "}
+        <Route path="/kaaxs-dawn" element={<KaaxsDawn />} />{" "}
+        <Route path="/biosynth" element={<Biosynth />} />{" "}
+      </Routes>
     </Router>
   );
 };

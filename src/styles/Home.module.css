@@ -1,6 +1,6 @@
 .homeContainer {
   position: relative;
-  flex: 1;
+  height: 91vh;
   overflow: hidden;
   display: flex;
 }
