@@ -11,8 +11,10 @@ import { useGetBlogPostsByGameIdQuery } from "../../api/gameQueries";
 import Spinner from "../../components/Spinner";
 import { BlogEntryData, BlogPostDTO } from "../../types/BlogPost";
 import ConstructionWarning from "../../components/ConstructionWarning";
+import { useIsMobile } from "../../hooks/UseIsMobile";
 
 const AdventureExe: React.FC = () => {
+  const isMobile = useIsMobile();
   const name = "adventureExe";
   const [gameId, setGameId] = useState<string | undefined>();
   const [blogPostsData, setBlogPostsData] = useState<
@@ -42,6 +44,7 @@ const AdventureExe: React.FC = () => {
       <BackToHomeButton />
       <Container sx={{ marginTop: 4 }}>
         <GameBreakdown
+          isMobile={isMobile}
           logos={[
             { name: csharplogo, alt: "C# Logo", invert: false },
             { name: unitylogo, alt: "Unity Logo", invert: true },
@@ -56,7 +59,7 @@ const AdventureExe: React.FC = () => {
           name={name}
         />
         {blogPostsData ? (
-          <BlogSection entries={posts} />
+          <BlogSection isMobile={isMobile} entries={posts} />
         ) : gameId ? (
           <Spinner />
         ) : null}

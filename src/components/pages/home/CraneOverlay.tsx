@@ -1,7 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import styles from "../../../styles/CraneOverlay.module.css";
+import { useIsMobile } from "../../../hooks/UseIsMobile";
 
 const CraneOverlay: React.FC = () => {
+  const isMobile = useIsMobile();
   const [xPosition, setXPosition] = useState(0);
   const [clawFrame, setClawFrame] = useState(0);
   const [isDropping, setIsDropping] = useState(false);
@@ -95,24 +97,26 @@ const CraneOverlay: React.FC = () => {
         />
       </div>
 
-      <div className={styles.controls}>
-        <button
-          onMouseDown={() => handleMouseDown("left")}
-          onMouseUp={handleMouseUp}
-          onMouseLeave={handleMouseUp}
-        >
-          ←
-        </button>
-        <button onClick={handleDrop}>Drop</button>
-        <button
-          onMouseDown={() => handleMouseDown("right")}
-          onMouseUp={handleMouseUp}
-          onMouseLeave={handleMouseUp}
-        >
-          →
-        </button>
-        <button onClick={handleReset}>Reset</button>
-      </div>
+      {!isMobile && (
+        <div className={styles.controls}>
+          <button
+            onMouseDown={() => handleMouseDown("left")}
+            onMouseUp={handleMouseUp}
+            onMouseLeave={handleMouseUp}
+          >
+            ←
+          </button>
+          <button onClick={handleDrop}>Drop</button>
+          <button
+            onMouseDown={() => handleMouseDown("right")}
+            onMouseUp={handleMouseUp}
+            onMouseLeave={handleMouseUp}
+          >
+            →
+          </button>
+          <button onClick={handleReset}>Reset</button>
+        </div>
+      )}
     </div>
   );
 };

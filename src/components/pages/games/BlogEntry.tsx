@@ -5,19 +5,33 @@ import styles from "../../../styles/BlogEntry.module.css";
 import { BlogEntryData } from "../../../types/BlogPost";
 
 const BlogEntry: React.FC<{
+  isMobile: boolean;
   data: BlogEntryData;
   switchSides: boolean;
   firstEntry: boolean;
-}> = ({ data, switchSides, firstEntry }) => {
+}> = ({ isMobile, data, switchSides, firstEntry }) => {
   const displayDate = moment(data.date).format("DD-MM-YYYY");
+  const direction = isMobile
+    ? "column-reverse"
+    : switchSides
+      ? "row-reverse"
+      : "row";
 
   return (
     <>
-      <Grid display={"flex"} sx={{ paddingTop: !firstEntry ? "5%" : "0%" }}>
-        {!switchSides && (
-          <GridImage image={data.image} imageAlt={data.imageAlt} />
-        )}
-        <Grid width={"50%"}>
+      <Grid
+        sx={{
+          display: "flex",
+          flexDirection: direction,
+          paddingTop: !firstEntry ? "5%" : "0%",
+        }}
+      >
+        <GridImage
+          isMobile={isMobile}
+          image={data.image}
+          imageAlt={data.imageAlt}
+        />
+        <Grid sx={{ width: isMobile ? "100%" : "50%" }}>
           <Typography variant="h4" sx={{ textAlign: "center" }} gutterBottom>
             {displayDate}
           </Typography>
@@ -30,21 +44,20 @@ const BlogEntry: React.FC<{
               {data.blogText}
             </Typography>
           </Card>
-          <Card>
-            <div className={styles.card}>
-              <ul className={styles.list}>
-                {data.keyChanges.map((change, index) => (
-                  <div key={index}>
-                    <li>{change}</li>
-                  </div>
-                ))}
-              </ul>
-            </div>
-          </Card>
+          {!isMobile && (
+            <Card>
+              <div className={styles.card}>
+                <ul className={styles.list}>
+                  {data.keyChanges.map((change, index) => (
+                    <div key={index}>
+                      <li>{change}</li>
+                    </div>
+                  ))}
+                </ul>
+              </div>
+            </Card>
+          )}
         </Grid>
-        {switchSides && (
-          <GridImage image={data.image} imageAlt={data.imageAlt} />
-        )}
       </Grid>
     </>
   );
@@ -53,11 +66,17 @@ const BlogEntry: React.FC<{
 export default BlogEntry;
 
 const GridImage: React.FC<{
+  isMobile: boolean;
   image: string;
   imageAlt: string;
-}> = ({ image, imageAlt }) => {
+}> = ({ isMobile, image, imageAlt }) => {
   return (
-    <Grid width={"50%"}>
+    <Grid
+      sx={{
+        width: isMobile ? "100%" : "50%",
+        paddingY: isMobile ? "1rem" : "",
+      }}
+    >
       <img src={`/${image}`} alt={imageAlt} className={styles.image} />
     </Grid>
   );

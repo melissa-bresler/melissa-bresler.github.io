@@ -73,7 +73,7 @@ const PacmanEasterEgg: React.FC<Props> = ({ onPacmanClick, darkMode }) => {
         progress = 0;
 
         setPellets((oldPellets) =>
-          oldPellets.map((p) => ({ ...p, eaten: false }))
+          oldPellets.map((p) => ({ ...p, eaten: false })),
         );
       }
 
@@ -123,7 +123,7 @@ const PacmanEasterEgg: React.FC<Props> = ({ onPacmanClick, darkMode }) => {
             return { ...pellet, eaten: true };
           }
           return pellet;
-        })
+        }),
       );
       requestAnimationFrame(animate);
     };
@@ -180,7 +180,7 @@ const PacmanEasterEgg: React.FC<Props> = ({ onPacmanClick, darkMode }) => {
                 transition: "opacity 0.3s ease",
               }}
             />
-          )
+          ),
       )}
 
       <div

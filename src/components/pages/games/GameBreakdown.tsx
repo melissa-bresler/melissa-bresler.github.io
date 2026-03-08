@@ -12,13 +12,14 @@ import Spinner from "../../Spinner";
 import ErrorPage from "../../ErrorPage";
 
 const GameBreakdown: React.FC<{
+  isMobile: boolean;
   logos: { name: string; alt: string; invert: boolean }[];
   GameComponent?: React.FC;
   gameArt: { src: string; alt: string };
   images?: string[];
   name: string;
   setGameId: React.Dispatch<React.SetStateAction<string | undefined>>;
-}> = ({ logos, gameArt, GameComponent, name, setGameId, images }) => {
+}> = ({ isMobile, logos, gameArt, GameComponent, name, setGameId, images }) => {
   const isDarkMode = useDarkMode();
 
   const getGameQuery = useGetGameBySlugQuery(name);
@@ -41,11 +42,19 @@ const GameBreakdown: React.FC<{
   }
 
   const displayDate = moment(gameData.createdAt).format("DD-MM-YYYY");
+  const direction = isMobile ? "column" : "row";
 
   return (
     <>
-      <Grid display={"flex"} height={"100%"}>
-        <Grid width={"50%"} display="flex" flexDirection="column">
+      <Grid sx={{ display: "flex", height: "100%", flexDirection: direction }}>
+        <Grid
+          sx={{
+            width: isMobile ? "100%" : "50%",
+            display: "flex",
+            flexDirection: "column",
+            paddingBottom: isMobile ? "1rem" : "",
+          }}
+        >
           <Typography variant="h4" sx={{ textAlign: "center" }}>
             {gameData.title}
           </Typography>
@@ -73,11 +82,13 @@ const GameBreakdown: React.FC<{
             </Typography>
           </Card>
           <Grid
-            display={"flex"}
-            alignItems={"center"}
-            justifyContent={"center"}
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
           >
-            <Grid width={"50%"}>
+            <Grid sx={{ width: "50%" }}>
               <Card>
                 <div className={styles.card}>
                   <Typography variant="overline" fontSize={16}>
@@ -86,7 +97,7 @@ const GameBreakdown: React.FC<{
                 </div>
               </Card>
             </Grid>
-            <Grid width={"50%"}>
+            <Grid sx={{ width: "50%" }}>
               <Card>
                 <div style={{ display: "flex" }}>
                   {logos.map((logo, index) => (
@@ -113,10 +124,12 @@ const GameBreakdown: React.FC<{
           </Card>
         </Grid>
         <Grid
-          width={"50%"}
-          marginLeft={"5px"}
-          display="flex"
-          flexDirection="column"
+          sx={{
+            width: isMobile ? "100%" : "50%",
+            marginLeft: "5px",
+            display: "flex",
+            flexDirection: "column",
+          }}
         >
           {GameComponent ? (
             <GameComponent />

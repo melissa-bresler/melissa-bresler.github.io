@@ -5,8 +5,10 @@ import csharplogo from "../../assets/pages/games/c-sharp-logo.png";
 import unitylogo from "../../assets/pages/games/unity-logo.png";
 import { BackToHomeButton } from "../../components/BackToHomeButton";
 import visualBoard from "../../assets/pages/games/Biosynth/milanote.png";
+import { useIsMobile } from "../../hooks/UseIsMobile";
 
 const Biosynth: React.FC = () => {
+  const isMobile = useIsMobile();
   const name = "biosynth";
   const [_, setGameId] = useState<string | undefined>();
 
@@ -15,6 +17,7 @@ const Biosynth: React.FC = () => {
       <BackToHomeButton />
       <Container sx={{ marginTop: 4 }}>
         <GameBreakdown
+          isMobile={isMobile}
           logos={[
             { name: csharplogo, alt: "C# Logo", invert: false },
             { name: unitylogo, alt: "Unity Logo", invert: true },

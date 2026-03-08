@@ -5,8 +5,10 @@ import swiflogo from "../../assets/pages/games/swift-logo.png";
 import { BackToHomeButton } from "../../components/BackToHomeButton";
 import gameScreenshot from "../../assets/pages/games/MemoryMeltdown/madness-1.png";
 import { loadImagesFromFolder } from "../../assets/loadImages";
+import { useIsMobile } from "../../hooks/UseIsMobile";
 
 const MemoryMeltdown: React.FC = () => {
+  const isMobile = useIsMobile();
   const images = loadImagesFromFolder("mm");
 
   const name = "memory-meltdown";
@@ -17,6 +19,7 @@ const MemoryMeltdown: React.FC = () => {
       <BackToHomeButton />
       <Container sx={{ marginTop: 4 }}>
         <GameBreakdown
+          isMobile={isMobile}
           logos={[{ name: swiflogo, alt: "Swift Logo", invert: false }]}
           gameArt={{
             src: gameScreenshot,

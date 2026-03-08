@@ -96,7 +96,7 @@ const About: React.FC = () => {
             <p>
               I’m a software developer based in the UK with a strong interest in
               game development. Outside of my day job, I’ve been teaching myself
-              how to design and build games—starting with small side projects
+              how to design and build games, starting with small side projects
               and gradually picking up the skills involved along the way.
             </p>
             <p>

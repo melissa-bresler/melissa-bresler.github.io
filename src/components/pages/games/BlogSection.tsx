@@ -3,8 +3,9 @@ import BlogEntry from "./BlogEntry";
 import { BlogEntryData } from "../../../types/BlogPost";
 
 const BlogSection: React.FC<{
+  isMobile: boolean;
   entries: BlogEntryData[];
-}> = ({ entries }) => {
+}> = ({ entries, isMobile }) => {
   return (
     <>
       <Divider
@@ -20,6 +21,7 @@ const BlogSection: React.FC<{
       <div style={{ margin: 50 }} />
       {entries.map((entry, i) => (
         <BlogEntry
+          isMobile={isMobile}
           data={entry}
           switchSides={i % 2 !== 0}
           firstEntry={i === 0}

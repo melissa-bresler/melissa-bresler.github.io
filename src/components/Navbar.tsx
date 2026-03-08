@@ -184,7 +184,7 @@ const Navbar: React.FC = () => {
               textDecoration: "none",
             }}
           >
-            MELISSA BRESLER
+            MEL B
           </Typography>
           <img src={controller} alt="Logo" className={styles.imageMobile} />
         </Toolbar>

@@ -10,8 +10,10 @@ import { useGetBlogPostsByGameIdQuery } from "../../api/gameQueries";
 import { BlogEntryData, BlogPostDTO } from "../../types/BlogPost";
 import Spinner from "../../components/Spinner";
 import BlogSection from "../../components/pages/games/BlogSection";
+import { useIsMobile } from "../../hooks/UseIsMobile";
 
 const KaaxsDawn: React.FC = () => {
+  const isMobile = useIsMobile();
   const name = "kaaxs-dawn";
   const [gameId, setGameId] = useState<string | undefined>();
   const [blogPostsData, setBlogPostsData] = useState<
@@ -43,6 +45,7 @@ const KaaxsDawn: React.FC = () => {
       <BackToHomeButton />
       <Container sx={{ marginTop: 4 }}>
         <GameBreakdown
+          isMobile={isMobile}
           logos={[
             { name: csharplogo, alt: "C# Logo", invert: false },
             { name: unitylogo, alt: "Unity Logo", invert: true },
@@ -56,7 +59,7 @@ const KaaxsDawn: React.FC = () => {
           setGameId={setGameId}
         />
         {blogPostsData ? (
-          <BlogSection entries={posts} />
+          <BlogSection isMobile={isMobile} entries={posts} />
         ) : gameId ? (
           <Spinner />
         ) : null}
