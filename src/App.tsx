@@ -8,7 +8,6 @@ import AdventureExe from "./pages/games/AdventureExe";
 import MemoryMeltdown from "./pages/games/MemoryMeltdown";
 import KaaxsDawn from "./pages/games/KaaxsDawn";
 import Biosynth from "./pages/games/Biosynth";
-import { Box } from "@mui/material";
 
 const App: React.FC = () => {
   useEffect(() => {
