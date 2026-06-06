@@ -22,6 +22,7 @@ public class HealthController : ControllerBase
     }
 
     [HttpGet("db")]
+    [HttpHead("db")]
     public async Task<IActionResult> DbHealth()
     {
         try
