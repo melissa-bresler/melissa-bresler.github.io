@@ -2,7 +2,7 @@ import { Grid, Typography } from "@mui/material";
 import moment from "moment";
 import { Card } from "../../Card";
 import styles from "../../../styles/GameBreakdown.module.css";
-import clsx from "clsx";
+import classNames from "clsx";
 import ImageSwiper from "./ImageSwiper";
 import { useDarkMode } from "../../../hooks/UseDarkMode";
 import { useGetGameBySlugQuery } from "../../../api/gameQueries";
@@ -105,7 +105,7 @@ const GameBreakdown: React.FC<{
                       <img
                         src={logo.name}
                         alt={logo.alt}
-                        className={clsx(
+                        className={classNames(
                           styles.image,
                           logo.invert && "invert-on-dark",
                         )}

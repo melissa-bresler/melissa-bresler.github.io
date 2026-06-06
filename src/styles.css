@@ -15,7 +15,9 @@ body.dark-mode .invert-on-dark {
 
 :root {
   --pink: #ff008c;
+  --lightpink: #ff008c80;
   --yellow: #ffca3a;
+  --lightyellow: #ffca3ae2;
   --darkeryellow: #d1a630;
   --black: #000;
   --lighterblack: #1e1e1e;

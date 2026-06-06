@@ -1,4 +1,4 @@
-.image {
+.arcadeMachine {
   max-width: 7rem;
   max-height: 7rem;
   object-fit: contain;
@@ -7,18 +7,50 @@
   display: flex;
 }
 
-.static {
-  max-width: 25%;
-  object-fit: contain;
-  margin: auto;
-  position: absolute;
+.ghosts {
+  transform: scale(0.7);
+  margin: -3rem;
 }
 
-.ghost {
+.aboutContainer {
+  position: relative;
+  height: 91vh;
+  overflow: hidden;
+  display: flex;
+}
+
+.aboutImage {
+  max-width: 55%;
+  max-height: 55%;
+}
+
+.aboutContent {
+  margin-inline: 2rem;
+}
+
+.aboutTitle {
+  max-width: 75%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.aboutText {
+  max-width: 70%;
+}
+
+.box {
+  margin: 0 auto;
+  margin-bottom: -2rem;
+  padding: 1rem;
+  display: flex;
+}
+
+.pacman {
   position: fixed;
-  transform: scale(0.5);
-}
-
-.flipped {
-  transform: scale(0.5) scaleX(-1);
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 9999;
 }
