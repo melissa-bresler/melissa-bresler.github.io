@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Typography, Box } from "@mui/material";
-import photo from "../assets/pages/about/about-me-photo.png";
+import photo from "../assets/pages/about/about-me-photo.jpg";
 import machine from "../assets/pages/about/arcade-machine.png";
 import ghosts from "../assets/pages/about/ghosts.png";
 import colouredGhosts from "../assets/pages/about/ghosts-coloured.png";
