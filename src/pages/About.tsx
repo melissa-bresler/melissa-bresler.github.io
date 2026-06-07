@@ -5,7 +5,7 @@ import machine from "../assets/pages/about/arcade-machine.png";
 import ghosts from "../assets/pages/about/ghosts.png";
 import colouredGhosts from "../assets/pages/about/ghosts-coloured.png";
 import styles from "../styles/About.module.css";
-import PacmanEasterEgg from "../components/PackMan";
+import PacmanEasterEgg from "../components/PacmanEasterEgg/PacMan";
 import classNames from "clsx";
 // import VpnKeyIcon from "@mui/icons-material/VpnKey";
 import InputDialog from "../components/InputDialog";
@@ -201,7 +201,6 @@ const About: React.FC = () => {
       <div className={styles.pacman}>
         <PacmanEasterEgg
           onPacmanClick={toggleDarkMode}
-          darkMode={darkMode}
           isMobile={isMobile}
         />
       </div>
