@@ -1,7 +1,3 @@
-export function getPointOnPath(path: SVGPathElement, length: number) {
-  return path.getPointAtLength(length);
-}
-
 export function toScreenPoint(path: SVGPathElement, x: number, y: number) {
   const svgPoint = path.ownerSVGElement?.createSVGPoint();
   const screenCTM = path.getScreenCTM();

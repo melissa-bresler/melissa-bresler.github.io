@@ -70,7 +70,7 @@ const GameBreakdown: React.FC<{
             }}
             gutterBottom
           >
-            {gameData?.platforms.join(" | ")}
+            {gameData.platforms.join(" | ")}
           </Typography>
           <Card>
             <Typography

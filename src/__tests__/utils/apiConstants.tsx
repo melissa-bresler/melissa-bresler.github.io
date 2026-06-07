@@ -30,3 +30,11 @@ export const TestGame: Game = {
   platforms: ["platformA", "platformB"],
   starred: false,
 };
+
+export const TestGameDTO = {
+  ...TestGame,
+  longDescription:
+    "Test description that is longer than the regular description here.",
+  status: "Complete",
+  createdAt: testDate,
+};
