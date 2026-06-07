@@ -5,7 +5,7 @@ import swiflogo from "../../assets/pages/games/swift-logo.png";
 import { BackToHomeButton } from "../../components/BackToHomeButton";
 import gameScreenshot from "../../assets/pages/games/MemoryMeltdown/madness-1.png";
 import { loadImagesFromFolder } from "../../assets/loadImages";
-import { useIsMobile } from "../../hooks/UseIsMobile";
+import { useIsMobile } from "../../hooks/useIsMobile";
 
 const MemoryMeltdown: React.FC = () => {
   const isMobile = useIsMobile();

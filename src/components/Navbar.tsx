@@ -13,7 +13,7 @@ import {
 import { Link } from "react-router-dom";
 import styles from "../styles/Navbar.module.css";
 import controller from "../assets/navbar-controller.png";
-import { useDarkMode } from "../hooks/UseDarkMode";
+import { useDarkMode } from "../hooks/useDarkMode";
 import { MenuItemType, ResponsiveMenuItem } from "./ResponsiveMenuItem";
 import MenuIcon from "@mui/icons-material/Menu";
 

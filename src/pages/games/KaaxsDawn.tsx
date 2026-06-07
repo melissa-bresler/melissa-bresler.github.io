@@ -10,7 +10,7 @@ import { useGetBlogPostsByGameIdQuery } from "../../api/gameQueries";
 import { BlogEntryData, BlogPostDTO } from "../../types/BlogPost";
 import Spinner from "../../components/Spinner";
 import BlogSection from "../../components/pages/games/BlogSection";
-import { useIsMobile } from "../../hooks/UseIsMobile";
+import { useIsMobile } from "../../hooks/useIsMobile";
 
 const KaaxsDawn: React.FC = () => {
   const isMobile = useIsMobile();

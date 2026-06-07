@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import styles from "../../../styles/CraneOverlay.module.css";
-import { useIsMobile } from "../../../hooks/UseIsMobile";
+import { useIsMobile } from "../../../hooks/useIsMobile";
 
 const CraneOverlay: React.FC = () => {
   const isMobile = useIsMobile();

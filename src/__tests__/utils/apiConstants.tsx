@@ -1,4 +1,5 @@
-import { BlogEntryData } from "../types/BlogPost";
+import { BlogEntryData } from "../../types/BlogPost";
+import { Game } from "../../types/Game";
 const testDate = new Date("2026-02-24T18:36:00");
 const testDate2 = new Date("1999-01-11T09:59:00");
 
@@ -18,4 +19,14 @@ export const BlogEntryTestData2: BlogEntryData = {
   keyChanges: ["barfoo"],
 };
 
-export const BlogEntriesData = [BlogEntryTestData1, BlogEntryTestData2];
+export const BlogEntriesTestData = [BlogEntryTestData1, BlogEntryTestData2];
+
+export const TestGame: Game = {
+  id: "1234",
+  title: "Test Game",
+  description: "Test description here.",
+  slug: "testGame",
+  logo: "foobar.logo",
+  platforms: ["platformA", "platformB"],
+  starred: false,
+};

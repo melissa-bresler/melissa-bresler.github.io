@@ -22,4 +22,3 @@ A personal website to catalogue and showcase all the games I've developed or am 
 - Improve styling, animations, and mobile responsiveness
 - Complete carousel functionality on the home page
 - Add test coverage
-- Format for mobile devices and different screen sizes

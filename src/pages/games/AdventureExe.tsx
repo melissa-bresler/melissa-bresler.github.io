@@ -11,7 +11,7 @@ import { useGetBlogPostsByGameIdQuery } from "../../api/gameQueries";
 import Spinner from "../../components/Spinner";
 import { BlogEntryData, BlogPostDTO } from "../../types/BlogPost";
 import ConstructionWarning from "../../components/ConstructionWarning";
-import { useIsMobile } from "../../hooks/UseIsMobile";
+import { useIsMobile } from "../../hooks/useIsMobile";
 
 const AdventureExe: React.FC = () => {
   const isMobile = useIsMobile();

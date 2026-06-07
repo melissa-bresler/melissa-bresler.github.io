@@ -4,7 +4,7 @@ import { Card } from "../../Card";
 import styles from "../../../styles/GameBreakdown.module.css";
 import classNames from "clsx";
 import ImageSwiper from "./ImageSwiper";
-import { useDarkMode } from "../../../hooks/UseDarkMode";
+import { useDarkMode } from "../../../hooks/useDarkMode";
 import { useGetGameBySlugQuery } from "../../../api/gameQueries";
 import { useState, useEffect } from "react";
 import { GameDTO } from "../../../types/Game";

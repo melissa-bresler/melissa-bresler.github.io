@@ -5,7 +5,7 @@ import csharplogo from "../../assets/pages/games/c-sharp-logo.png";
 import unitylogo from "../../assets/pages/games/unity-logo.png";
 import { BackToHomeButton } from "../../components/BackToHomeButton";
 import visualBoard from "../../assets/pages/games/Biosynth/milanote.png";
-import { useIsMobile } from "../../hooks/UseIsMobile";
+import { useIsMobile } from "../../hooks/useIsMobile";
 
 const Biosynth: React.FC = () => {
   const isMobile = useIsMobile();

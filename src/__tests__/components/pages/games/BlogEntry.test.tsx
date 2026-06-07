@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import BlogEntry from "../../../../components/pages/games/BlogEntry";
-import { BlogEntryTestData1 } from "../../../apiConstants";
+import { BlogEntryTestData1 } from "../../../utils/apiConstants";
 
 describe("blog entry component", () => {
   test("renders component", () => {
@@ -9,6 +9,7 @@ describe("blog entry component", () => {
         data={BlogEntryTestData1}
         switchSides={false}
         firstEntry={false}
+        isMobile={false}
       />,
     );
 

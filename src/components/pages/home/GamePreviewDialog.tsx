@@ -19,7 +19,7 @@ const GamePreviewDialog: React.FC<DialogProps> = ({
 }) => {
   const toLink = "/" + game?.slug;
 
-  //TODO: Do an api call here to get further game data.
+  //TODO: Restyle to add more info. Can do another api call here to get further game data.
 
   return (
     <Dialog

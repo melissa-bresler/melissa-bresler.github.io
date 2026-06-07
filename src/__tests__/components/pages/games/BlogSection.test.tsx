@@ -1,12 +1,12 @@
 import { render, screen } from "@testing-library/react";
-import { BlogEntriesData } from "../../../apiConstants";
+import { BlogEntriesTestData } from "../../../utils/apiConstants";
 import BlogSection from "../../../../components/pages/games/BlogSection";
 
 describe("blog section component", () => {
   test("renders component", () => {
-    render(<BlogSection entries={BlogEntriesData} />);
+    render(<BlogSection entries={BlogEntriesTestData} isMobile={false} />);
 
-    BlogEntriesData.forEach((entry) => {
+    BlogEntriesTestData.forEach((entry) => {
       expect(screen.getByText(entry.blogText)).toBeInTheDocument();
 
       entry.keyChanges.forEach((change) => {

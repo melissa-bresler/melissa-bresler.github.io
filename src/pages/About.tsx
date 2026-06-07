@@ -9,7 +9,7 @@ import PacmanEasterEgg from "../components/PackMan";
 import classNames from "clsx";
 // import VpnKeyIcon from "@mui/icons-material/VpnKey";
 import InputDialog from "../components/InputDialog";
-import { useIsMobile } from "../hooks/UseIsMobile";
+import { useIsMobile } from "../hooks/useIsMobile";
 
 const About: React.FC = () => {
   const isMobile = useIsMobile();

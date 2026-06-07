@@ -1,22 +1,11 @@
 import { render, screen } from "@testing-library/react";
 import GamePreviewCard from "../../../../components/pages/home/GamePreviewCard";
+import { TestGame } from "../../../utils/apiConstants";
 
 describe("game preview card component", () => {
   test("renders component", () => {
-    render(
-      // TODO: some of these values shouldn't be required for this component but currently are due to being part of the Game object.
-      // Hopefully can fix this with db implementation
-      <GamePreviewCard
-        title={"Test Game"}
-        description={"foo bar"}
-        logo=""
-        slug={""}
-        platforms={[]}
-        id={""}
-        starred={false}
-      />,
-    );
+    render(<GamePreviewCard {...TestGame} />);
 
-    expect(screen.getByText("Test Game")).toBeInTheDocument();
+    expect(screen.getByText(TestGame.title)).toBeInTheDocument();
   });
 });

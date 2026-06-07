@@ -12,6 +12,17 @@ export default defineConfig({
     coverage: {
       reporter: ["text"],
       include: ["src/**/*.{ts,tsx}"],
+      exclude: [
+        "src/App.tsx",
+        "src/main.tsx",
+        "src/custom.d.ts",
+        "src/declarations.d.ts",
+        "src/api/apiClient.ts",
+        "src/pages/Contact.tsx", //TODO: Remove after adding page to site
+        "src/assets/**", // TODO: Not sure about this one
+        "src/__tests__/**",
+        "src/types/**",
+      ],
     },
   },
 });
