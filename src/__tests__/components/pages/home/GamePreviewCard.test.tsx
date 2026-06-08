@@ -7,5 +7,6 @@ describe("game preview card component", () => {
     render(<GamePreviewCard {...TestGame} />);
 
     expect(screen.getByText(TestGame.title)).toBeInTheDocument();
+    expect(screen.getByText(TestGame.description)).toBeInTheDocument();
   });
 });

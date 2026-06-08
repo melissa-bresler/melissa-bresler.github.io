@@ -31,10 +31,25 @@ export const TestGame: Game = {
   starred: false,
 };
 
-export const TestGameDTO = {
+export const TestGameDTO1 = {
   ...TestGame,
   longDescription:
     "Test description that is longer than the regular description here.",
   status: "Complete",
   createdAt: testDate,
 };
+
+export const TestGameDTO2 = {
+  id: "5678",
+  title: "FooBar",
+  description: "Some long text",
+  slug: "someTest",
+  logo: "another.logo",
+  platforms: ["platformC"],
+  starred: true,
+  longDescription: "Even longer text with more words.",
+  status: "In Development",
+  createdAt: testDate2,
+};
+
+export const TestGameDTOs = [TestGameDTO1, TestGameDTO2];

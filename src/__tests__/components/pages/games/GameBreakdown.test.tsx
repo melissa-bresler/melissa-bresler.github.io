@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { TestGameDTO } from "../../../utils/apiConstants";
+import { TestGameDTO1 } from "../../../utils/apiConstants";
 import GameBreakdown from "../../../../components/pages/games/GameBreakdown";
 import { useGetGameBySlugQuery } from "../../../../api/gameQueries";
 import moment from "moment";
@@ -13,7 +13,7 @@ const mockedUseGetGameBySlugQuery = vi.mocked(useGetGameBySlugQuery);
 describe("blog section component", () => {
   test("renders component succesfully", () => {
     mockedUseGetGameBySlugQuery.mockReturnValue({
-      data: TestGameDTO,
+      data: TestGameDTO1,
       isLoading: false,
       isError: false,
       error: null,
@@ -32,14 +32,14 @@ describe("blog section component", () => {
       />,
     );
 
-    expect(screen.getByText(TestGameDTO.title)).toBeInTheDocument();
+    expect(screen.getByText(TestGameDTO1.title)).toBeInTheDocument();
     expect(
-      screen.getByText(TestGameDTO.platforms.join(" | ")),
+      screen.getByText(TestGameDTO1.platforms.join(" | ")),
     ).toBeInTheDocument();
-    expect(screen.getByText(TestGameDTO.longDescription)).toBeInTheDocument();
-    expect(screen.getByText(TestGameDTO.status)).toBeInTheDocument();
+    expect(screen.getByText(TestGameDTO1.longDescription)).toBeInTheDocument();
+    expect(screen.getByText(TestGameDTO1.status)).toBeInTheDocument();
     expect(
-      screen.getByText(moment(TestGameDTO.createdAt).format("DD-MM-YYYY")),
+      screen.getByText(moment(TestGameDTO1.createdAt).format("DD-MM-YYYY")),
     ).toBeInTheDocument();
   });
 
